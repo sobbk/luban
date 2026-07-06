@@ -65,7 +65,7 @@ public class UnderlyingDeclaringTypeNameVisitor : ITypeFuncVisitor<string>
 
     public string Accept(TEnum type)
     {
-        return GoCommonTemplateExtension.FullName(type.DefEnum);
+        return "int32";
     }
 
     public string Accept(TString type)

@@ -65,9 +65,7 @@ public class BinUnderlyingDeserializeVisitor : ITypeFuncVisitor<string, string, 
 
     public string Accept(TEnum type, string fieldName, string bufName, string err, int depth)
     {
-        var enumTypeName = GoCommonTemplateExtension.FullName(type.DefEnum);
-        var tmpName = $"__enum{depth}__";
-        return $"{{ var {tmpName} int32; if {tmpName}, {err} = {bufName}.ReadInt(); {err} != nil {{ {err} = errors.New(\"error\"); return }}; {fieldName} = {enumTypeName}({tmpName}) }}";
+        return $"{{ if {fieldName}, {err} = {bufName}.ReadInt(); {err} != nil {{ {err} = errors.New(\"error\"); return }} }}";
     }
 
     public string Accept(TString type, string fieldName, string bufName, string err, int depth)
