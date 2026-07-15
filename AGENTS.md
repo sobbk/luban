@@ -22,5 +22,13 @@ Because there is no standalone test suite, keep changes narrow and verify behavi
 ## Commit & Pull Request Guidelines
 Recent history uses short conventional messages such as `fix: ...` and `chore: ...`. Keep commit subjects imperative and scoped to one change. Pull requests should include a brief summary, impacted modules (for example `Luban.Core` or `Luban.Protobuf`), validation steps performed, and screenshots only when docs or generated output visuals changed.
 
+## Release Publishing
+When the user asks to publish a specified Luban version to GitHub Releases:
+
+1. Check that `gh` is authenticated and inspect `publish/<version>/linux-x64/` and `publish/<version>/win-x64/`.
+2. Compress each platform directory into `Luban-<version>-linux-x64.zip` and `Luban-<version>-win-x64.zip` under `publish/<version>/`. Do not add publish artifacts to Git.
+3. Check for the remote `v<version>` tag. If it does not exist, create an annotated tag from the current committed `HEAD` and push it before creating the release.
+4. Create or update the GitHub Release for `v<version>`, upload both ZIP files, then verify the release URL and asset names.
+
 ## Security & Configuration Tips
 Do not commit generated secrets, local machine paths, or ad hoc build artifacts. Avoid changing workflow or deployment files unless the task explicitly requires it.
